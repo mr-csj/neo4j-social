@@ -1,0 +1,53 @@
+<div class="addInfBtn">
+    <h3 class="itemTit"><span>观众信息</span></h3>
+    <table class="addNewInfList">
+        <tr>
+            <th>名称</th>
+            <td width="240"><input class="inp-list w-200 clear-mr f-left" type="text" th:value="${person.name}" readonly="true"/></td>
+            <th>性别</th>
+            <td>
+                <input class="inp-list w-200 clear-mr f-left" type="text" th:if="${person.sex==0}" th:value="男" readonly="true"/>
+                <input class="inp-list w-200 clear-mr f-left" type="text" th:if="${person.sex==1}" th:value="女" readonly="true"/>
+            </td>
+        </tr>
+        <tr>
+            <th>朋友</th>
+            <td>
+                <select name="friends" id="friends" multiple="multiple" readonly="true">
+                    <option th:each="friend:${person.friends}"
+                            th:text="${#strings.length(friend.name)>20?#strings.substring(friend.name,0,20)+'...':friend.name}"
+                            th:selected="true"
+                            ></option>
+                </select>
+            </td>
+            <th>观看</th>
+            <td>
+                <select name="visiters" id="visiters" multiple="multiple" readonly="true">
+                    <option th:each="visiter:${person.visiters}"
+                            th:text="${#strings.length(visiter.name)>20?#strings.substring(visiter.name,0,20)+'...':visiter.name}"
+                            th:selected="true"
+                            ></option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <th>日期</th>
+            <td>
+                <input  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text" class="inp-list w-200 clear-mr f-left" th:value="${person.create} ? ${#dates.format(person.create,'yyyy-MM-dd HH:mm:ss')} :''" readonly="true"/>
+            </td>
+            <th>评分</th>
+            <td>
+                <select name="ratings" id="ratings" multiple="multiple" readonly="true">
+                    <option th:each="rating:${person.ratings}"
+                            th:text="${rating.movie.name}+'-->'+${rating.stars}+'*'+${rating.comment}"
+                            th:selected="true"
+                            ></option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <div class="bottomBtnBox">
+        <a class="btn-93X38 backBtn" href="javascript:closeDialog(0)">返回</a>
+    </div>
+</div>

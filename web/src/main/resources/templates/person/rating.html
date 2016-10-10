@@ -1,0 +1,45 @@
+<script th:src="@{/scripts/person/rating.js}"></script>
+<form id="saveForm" method="post">
+    <input type="hidden" name="person" id="person" th:value="${person.id}"/>
+<div class="addInfBtn" >
+    <h3 class="itemTit"><span>电影评分</span></h3>
+    <table class="addNewInfList">
+        <tr>
+            <th>看过的电影</th>
+            <td width="240">
+                <div class="selectDownMode f-left w-206">
+                    <input type="text"  value="请选择"/>
+                    <select class="selectMode" name="movie" id="movie">
+                        <option value="">请选择</option>
+                        <option th:each="movie:${movies}" th:value="${movie.id}"
+                                th:text="${#strings.length(movie.name)>20?#strings.substring(movie.name,0,20)+'...':movie.name}"
+                                ></option>
+                    </select>
+                </div>
+                <span class="tipStar f-left">*</span>
+            </td>
+            <th>星级</th>
+            <td width="240">
+                <input class="inp-list w-200 clear-mr f-left" type="text"  id="stars" name="stars" maxlength="16" />
+                <span class="tipStar f-left">*</span>
+            </td>
+        </tr>
+
+        <tr>
+            <th>评论</th>
+            <td width="240">
+                <input class="inp-list w-200 clear-mr f-left" type="text"  id="comment" name="comment" maxlength="16" />
+            </td>
+            <th>日期</th>
+            <td>
+                <input  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text" class="inp-list w-200 clear-mr f-left"  id="create" name="create"/>
+            </td>
+        </tr>
+    </table>
+    <div class="bottomBtnBox">
+        <a class="btn-93X38 saveBtn" href="javascript:void(0)">确定</a>
+        <a class="btn-93X38 backBtn" href="javascript:closeDialog(0)">返回</a>
+    </div>
+</div>
+
+</form>

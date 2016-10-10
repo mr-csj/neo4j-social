@@ -1,0 +1,47 @@
+<script th:src="@{/scripts/show/new.js}"></script>
+<form id="saveForm" action="./save" method="post">
+    <table class="addNewInfList">
+        <tr>
+            <th>名称</th>
+            <td width="240">
+                <input class="inp-list w-200 clear-mr f-left" type="text" name="name" id="name" maxlength="32" />
+                <span class="tipStar f-left">*</span>
+            </td>
+            <th>日期</th>
+            <td>
+                <input  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text" class="inp-list w-200 clear-mr f-left" id="create" name="create"/>
+            </td>
+        </tr>
+
+        <tr>
+            <th>地点</th>
+            <td width="240">
+                <div class="selectDownMode f-left w-206">
+                    <input type="text"  value="请选择"/>
+                    <select class="selectMode" name="cinema" id="cinema">
+                        <option value="">请选择</option>
+                        <option th:each="cinema:${cinemas}" th:value="${cinema.id}"
+                                th:text="${#strings.length(cinema.name)>20?#strings.substring(cinema.name,0,20)+'...':cinema.name}"
+                                ></option>
+                    </select>
+                </div>
+            </td>
+            <th>影片</th>
+            <td width="240">
+                <div class="selectDownMode f-left w-206">
+                    <input type="text"  value="请选择"/>
+                    <select class="selectMode" name="movie" id="movie">
+                        <option value="">请选择</option>
+                        <option th:each="movie:${movies}" th:value="${movie.id}"
+                                th:text="${#strings.length(movie.name)>20?#strings.substring(movie.name,0,20)+'...':movie.name}"
+                                ></option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="bottomBtnBox">
+        <a class="btn-93X38 saveBtn" href="javascript:void(0)">确定</a>
+        <a class="btn-93X38 backBtn" href="javascript: closeDialog()">返回</a>
+    </div>
+</form>

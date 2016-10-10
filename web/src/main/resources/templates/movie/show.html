@@ -1,0 +1,21 @@
+<div class="addInfBtn">
+    <h3 class="itemTit"><span>电影信息</span></h3>
+    <table class="addNewInfList">
+        <tr>
+            <th>名称</th>
+            <td width="240"><input class="inp-list w-200 clear-mr f-left" type="text" th:value="${movie.name}" readonly="true"/></td>
+            <th>评分</th>
+            <td>
+                <select name="ratings" id="ratings" multiple="multiple" readonly="true">
+                    <option th:each="rating:${movie.ratings}"
+                            th:text="${rating.person.name}+'-->'+${rating.stars}+'*'+${rating.comment}"
+                            th:selected="true"
+                            ></option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <div class="bottomBtnBox">
+        <a class="btn-93X38 backBtn" href="javascript:closeDialog(0)">返回</a>
+    </div>
+</div>

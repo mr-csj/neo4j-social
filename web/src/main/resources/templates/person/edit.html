@@ -1,0 +1,68 @@
+<script th:src="@{/scripts/person/edit.js}"></script>
+<form id="saveForm" method="post">
+    <input type="hidden" name="id" id="id" th:value="${person.id}"/>
+<div class="addInfBtn" >
+    <h3 class="itemTit"><span>观众信息</span></h3>
+    <table class="addNewInfList">
+        <tr>
+            <th>名称</th>
+            <td width="240">
+                <input class="inp-list w-200 clear-mr f-left" type="text" th:value="${person.name}" id="name" name="name" maxlength="16" />
+                <span class="tipStar f-left">*</span>
+            </td>
+            <th>性别</th>
+            <td>
+                <div class="selectDownMode f-left w-206">
+                    <input type="text" th:if="${person.sex==0}" th:value="男"/>
+                    <input type="text" th:if="${person.sex==1}" th:value="女"/>
+                    <input type="text" th:if="${person.sex==null}" th:value="请选择"/>
+                    <select class="selectMode" name="sex" id="sex">
+                        <option value="">请选择</option>
+                        <option value="0" th:selected="${person.sex==0}">男</option>
+                        <option value="1" th:selected="${person.sex==1}">女</option>
+                    </select>
+                </div>
+                <span class="tipStar f-left">*</span>
+            </td>
+        </tr>
+
+        <tr>
+            <th>朋友</th>
+            <td width="240">
+                <div >
+                    <select name="friends" id="friends" multiple="multiple">
+                        <option th:each="friend:${friends}" th:value="${friend.id}"
+                                th:text="${#strings.length(friend.name)>20?#strings.substring(friend.name,0,20)+'...':friend.name}"
+                                th:selected="${#lists.contains(fids, friend.id)}"
+                                ></option>
+                    </select>
+                </div>
+            </td>
+            <th>观看</th>
+            <td width="240">
+                <div >
+                    <select name="visiters" id="visiters" multiple="multiple">
+                        <option th:each="visiter:${visiters}" th:value="${visiter.id}"
+                                th:text="${#strings.length(visiter.name)>20?#strings.substring(visiter.name,0,20)+'...':visiter.name}"
+                                th:selected="${#lists.contains(vids, visiter.id)}"
+                                ></option>
+                    </select>
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <th>日期</th>
+            <td>
+                <input  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" type="text" class="inp-list w-200 clear-mr f-left" th:value="${person.create} ? ${#dates.format(person.create,'yyyy-MM-dd HH:mm:ss')} :''" id="create" name="create"/>
+            </td>
+
+        </tr>
+    </table>
+    <div class="bottomBtnBox">
+        <a class="btn-93X38 saveBtn" href="javascript:void(0)">确定</a>
+        <a class="btn-93X38 backBtn" href="javascript:closeDialog(0)">返回</a>
+    </div>
+</div>
+
+</form>
