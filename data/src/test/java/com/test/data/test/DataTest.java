@@ -66,26 +66,26 @@ public class DataTest {
 
     }
 
-    @Test
+    //@Test
     public void addData(){
         Cinema cinema = new Cinema();
-        cinema.setName("龙城影院");
+        cinema.setName("汇众影院");
         cinema.setCity("深圳");
 
         Movie movie = new Movie();
-        movie.setName("源代码");
+        movie.setName("狼图腾");
 
         Show show = new Show();
-        show.setName("源代码第一场");
+        show.setName("狼图腾第一场");
         show.setMovie(movie);
         show.setCinema(cinema);
         show.setCreate(new Date());
 
         showRepository.save(show);
-        //Show show = showRepository.findOne(2929L);
+        //Show show = showRepository.findOne(2553L);
         Assert.notNull(show.getId());
 
-        for(int i=31; i<=50; i++){
+        for(int i=1501; i<=1700; i++){
             Person person = new Person();
             person.setName("观众" + i);
             person.setSex(1);
@@ -97,7 +97,7 @@ public class DataTest {
             }
 
             person.addVistiter(show);
-            person.rate(show.getMovie(),i % 10,"好看");
+            //person.rate(show.getMovie(),i % 10,"好看");
 
             personRepository.save(person);
         }
