@@ -24,11 +24,11 @@ public interface PersonRepository extends GraphRepository<Person> {
 
     //未看过指定电影的朋友
     @Query("MATCH (n:Person)-[:FRIEND_OF*1..3]->(m:Person) WHERE id(n)={id} AND NOT (m)-[:VISITED]->()-[:BLOCKBUSTER]->({name:{name}}) " +
-            "RETURN  m ORDER BY m.name")
+            "AND id(m) <> {id} RETURN  m ORDER BY m.name")
     Set<Person> findFriendsNotVisiterMovie(@Param("id") Long id, @Param("name") String name);
 
     @Query("MATCH (n:Person)-[:FRIEND_OF*1..3]->(m:Person) WHERE id(n)={id} AND NOT (m)-[:VISITED]->()-[:BLOCKBUSTER]->({name:{name}}) " +
-            "RETURN  m ORDER BY m.name skip {skip} limit {limit}")
+            "AND id(m) <> {id} RETURN  m ORDER BY m.name skip {skip} limit {limit}")
     Set<Person> findFriendsNotVisiterMoviePage(@Param("id") Long id, @Param("name") String name, @Param("skip")int skip, @Param("limit")int limit);
 
     //看过指定电影的用户

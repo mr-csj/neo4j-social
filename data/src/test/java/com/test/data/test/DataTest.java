@@ -29,7 +29,7 @@ public class DataTest {
     @Autowired
     private ShowRepository showRepository;
 
-    @Before
+    //@Before
     public void initData(){
        Cinema cinema = new Cinema();
        cinema.setName("凤凰影院");
@@ -66,7 +66,7 @@ public class DataTest {
 
     }
 
-    //@Test
+    @Test
     public void addData(){
         Cinema cinema = new Cinema();
         cinema.setName("汇众影院");
@@ -82,10 +82,10 @@ public class DataTest {
         show.setCreate(new Date());
 
         showRepository.save(show);
-        //Show show = showRepository.findOne(2553L);
+        //Show show = showRepository.findOne(4192L);
         Assert.notNull(show.getId());
 
-        for(int i=1501; i<=1700; i++){
+        for(int i=30; i<=200; i++){
             Person person = new Person();
             person.setName("观众" + i);
             person.setSex(1);
@@ -97,7 +97,7 @@ public class DataTest {
             }
 
             person.addVistiter(show);
-            //person.rate(show.getMovie(),i % 10,"好看");
+            person.rate(show.getMovie(),i % 10,"好看");
 
             personRepository.save(person);
         }
