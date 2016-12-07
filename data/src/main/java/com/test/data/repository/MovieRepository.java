@@ -11,6 +11,7 @@ import java.util.Set;
 
 @Repository
 public interface MovieRepository extends GraphRepository<Movie> {
+    //电影评分
     @Query("MATCH (:Person)-[r:RATED]->(m:Movie) " +
             "WITH m, COLLECT(r.stars) AS ratings " +
             "WITH m, ratings, REDUCE(s = 0, i IN ratings | s + i)*1.0 / SIZE(ratings) AS stars " +
@@ -18,10 +19,9 @@ public interface MovieRepository extends GraphRepository<Movie> {
             "ORDER BY stars DESC, num DESC SKIP {skip} LIMIT {limit}")
     Set<Map<String,Object>> findRatingMovie(@Param("skip") int skip, @Param("limit") int limit);
 
+    //电影评分总数
     @Query("MATCH (:Person)-[r:RATED]->(m:Movie) " +
             "WITH m, COLLECT(r.stars) AS ratings " +
             "RETURN COUNT(m) AS count ")
     int findRatingMovieCount();
 }
-
-

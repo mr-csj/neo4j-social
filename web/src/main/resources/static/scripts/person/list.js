@@ -45,7 +45,6 @@ var pageaction = function(){
 }
 
 var pageselectCallback = function(page_index, jq, size){
-    var html = "" ;
     if(currentPageData!=null){
         fillData(currentPageData);
         currentPageData = null;

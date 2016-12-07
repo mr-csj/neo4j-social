@@ -6,12 +6,14 @@ import org.springframework.data.neo4j.repository.GraphRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
+import java.util.Date;
 import java.util.Set;
 
 @Repository
 public interface PersonRepository extends GraphRepository<Person> {
     @Query("MATCH (n:Person) WHERE ID(n) <> {id} RETURN n;")
-    Iterable<Person> findByIdNotIn(@Param("id") Long id);
+    Iterable<Person> findByIdNot(@Param("id") Long id);
 
     //找出所有朋友包括路径
     @Query("MATCH shortestPath((n:Person)-[r:FRIEND_OF*]->(m:Person)) WHERE ID(n)={id} RETURN m, length(r) as path ORDER BY m.name")
@@ -44,6 +46,8 @@ public interface PersonRepository extends GraphRepository<Person> {
 
     Person findByName(String name);
 
+    Iterable<Person> findByNameLike(String name);
+
+    Iterable<Person> findByCreateLessThan(Date create);
+
 }
-
-

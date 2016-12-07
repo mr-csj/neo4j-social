@@ -81,7 +81,7 @@ public class PersonController {
     @RequestMapping(value="/edit/{id}")
     public String update(ModelMap model,@PathVariable Long id){
         Person person = personService.findById(id);
-        Iterable<Person> friends = personRepository.findByIdNotIn(id);
+        Iterable<Person> friends = personRepository.findByIdNot(id);
         Iterable<Show> visiters = showRepository.findAll();
 
         //用户朋友
