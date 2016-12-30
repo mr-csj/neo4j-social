@@ -7,8 +7,6 @@ import com.test.data.domain.Person;
 import com.test.data.domain.Show;
 import com.test.data.model.PersonQo;
 import com.test.data.repository.PersonRepository;
-import com.test.data.repository.ShowRepository;
-import com.test.data.service.PagesService;
 import com.test.data.service.PersonService;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +19,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,7 +31,7 @@ public class DataTest {
     @Autowired
     private PersonService personService;
 
-    //@Before
+    @Before
     public void addData(){
         Cinema cinema = new Cinema();
         cinema.setName("凤凰影院");
@@ -50,7 +46,7 @@ public class DataTest {
         show.setCinema(cinema);
         show.setCreate(new Date());
 
-        for(int i=1; i<=10; i++){
+        for(int i=1; i<=100; i++){
             Person person = new Person();
             person.setName("观众" + i);
             person.setSex(1);
@@ -69,7 +65,7 @@ public class DataTest {
         Assert.notNull(show.getId());
     }
 
-    //@Test
+    @Test
     public void getPage() {
         PersonQo personQo = new PersonQo();
         Page<Person> persons = personService.findPage(personQo);

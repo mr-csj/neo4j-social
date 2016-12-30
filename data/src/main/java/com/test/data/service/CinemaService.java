@@ -1,12 +1,8 @@
 package com.test.data.service;
 
 import com.test.data.domain.Cinema;
-import com.test.data.domain.Movie;
 import com.test.data.model.CinemaQo;
-import com.test.data.model.MovieQo;
 import com.test.data.repository.CinemaRepository;
-import com.test.data.repository.MovieRepository;
-import org.neo4j.ogm.cypher.BooleanOperator;
 import org.neo4j.ogm.cypher.ComparisonOperator;
 import org.neo4j.ogm.cypher.Filter;
 import org.neo4j.ogm.cypher.Filters;

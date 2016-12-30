@@ -84,13 +84,13 @@ public class PersonController {
         Iterable<Person> friends = personRepository.findByIdNot(id);
         Iterable<Show> visiters = showRepository.findAll();
 
-        //用户朋友
+        //观众的朋友
         Set<Long> fids = new HashSet<>();
         for(Person friend : person.getFriends()){
             fids.add(friend.getId());
         }
 
-        //用户看过节目
+        //观众看过的节目
         Set<Long> vids = new HashSet<>();
         for(Show show : person.getVisiters()){
             vids.add(show.getId());

@@ -21,7 +21,6 @@ public class PagesService<T> {
     @Autowired
     private Session session;
 
-
     public Page<T> findAll(Class<T> clazz, Pageable pageable, Filters filters){
         Collection data = this.session.loadAll(clazz, filters, convert(pageable.getSort()), new Pagination(pageable.getPageNumber(), pageable.getPageSize()), 1);
         int count = this.session.loadAll(clazz, filters, 1).size();

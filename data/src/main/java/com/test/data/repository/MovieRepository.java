@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Repository
 public interface MovieRepository extends GraphRepository<Movie> {
-    //电影评分
+    //电影评分排名
     @Query("MATCH (:Person)-[r:RATED]->(m:Movie) " +
             "WITH m, COLLECT(r.stars) AS ratings " +
             "WITH m, ratings, REDUCE(s = 0, i IN ratings | s + i)*1.0 / SIZE(ratings) AS stars " +

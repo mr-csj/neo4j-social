@@ -47,7 +47,7 @@ public class Rating{
     public Person getPerson() {
         return person;
     }
-    //@JsonManagedReference
+
     public void setPerson(Person person) {
         this.person = person;
     }
