@@ -22,7 +22,7 @@ public class PersonService {
     @Autowired
     private PersonRepository personRepository;
     @Autowired
-    private PagesService<Person> userPagesService;
+    private PagesService<Person> personPagesService;
 
     public Person findById(Long id) {
         return personRepository.findOne(id);
@@ -53,6 +53,6 @@ public class PersonService {
             filters.add(filter);
         }
 
-        return userPagesService.findAll(Person.class, pageable, filters);
+        return personPagesService.findAll(Person.class, pageable, filters);
     }
 }
